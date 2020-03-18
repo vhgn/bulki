@@ -44,9 +44,11 @@ void assert
 void check(test_t* tests, ...)
 {
 	va_list list;
-	va_start(list, tests);
+	test_t* argument;
 
-	test_t* argument = tests;
+	va_start(list, tests);
+	
+	argument = tests;
 	while(argument)
 	{
 		argument();
@@ -55,8 +57,9 @@ void check(test_t* tests, ...)
 
 	va_end(list);
 }
-
+#ifdef __STDC_VERSION__ /* Not C89 */
 #define check(...) check(__VA_ARGS__, NULL)
+#endif
 
 #endif /* BULKI_MAIN */
 
