@@ -19,14 +19,16 @@ void assert
 	const char* file,
 	unsigned line,
 	const char* function);
-	
+
 #ifdef BULKI_MAIN
+
+char* BULKI_PASS = "everything is working";
 
 int errors()
 {
 	if(problems == 0)
 	{
-		printf("\033[0;32m'sall good, man\033[0m\n");
+		printf("\033[0;32m%s\033[0m\n", BULKI_PASS);
 	}
 
 	return problems;
