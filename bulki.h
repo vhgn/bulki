@@ -9,12 +9,9 @@ typedef void (test_t)(void);
 
 int problems;
 
-void check
-	(test_t* tests,
-	...);
+void check(test_t* tests, ...);
 
-void assert
-	(int statement);
+void assert(int statement);
 
 #ifdef BULKI_MAIN
 
