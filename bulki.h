@@ -9,6 +9,10 @@ typedef void (test_t)(void);
 
 int problems;
 
+void check
+	(test_t* tests,
+	...);
+
 void assert
 	(int statement,
 
