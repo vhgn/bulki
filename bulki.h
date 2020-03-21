@@ -8,24 +8,10 @@
 typedef void (test_t)(void);
 
 int problems;
-
 void check(test_t* tests, ...);
-
 void assert(int statement);
 
 #ifdef BULKI_MAIN
-
-char* BULKI_PASS = "everything is working";
-
-int errors()
-{
-	if(problems == 0)
-	{
-		printf("\033[0;32m%s\033[0m\n", BULKI_PASS);
-	}
-
-	return problems;
-}
 
 void check(test_t* tests, ...)
 {
@@ -43,14 +29,20 @@ void check(test_t* tests, ...)
 
 	va_end(list);
 }
+
 #ifdef __STDC_VERSION__ /* Not C89 */
 #define check(...) check(__VA_ARGS__, NULL)
 #endif
 
 #endif /* BULKI_MAIN */
 
-#define assert(A) A == 0 ? \
-printf("\033[0;31m[%d] %s - ./%s:%d\033[0m\n", \
-problems++, __func__, __FILE__, __LINE__) : 0
+#define errors() problems == 0 \
+? printf("\033[0;32m%s\033[0m\n", "everything is ok") && 0 \
+: problems;
+
+#define assert(A) A == 0 \
+? printf("\033[0;31m[%d] %s - ./%s:%d\033[0m\n", \
+problems++, __func__, __FILE__, __LINE__) \
+: 0
 
 #endif /* BULKI_H */
