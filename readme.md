@@ -1,23 +1,23 @@
-> The simplest C testing library
+> Smallest testing library
 
 # Usage
 
-Create a file containing all the test function names.
-Add `BULKI_MAIN` definition only here before including.
-Run `check` on functions in main and return error count.
+Create a main file containing all the test function names.
+Run the functions in `main`, make sure you define them.
+Return `errors` integer; it contains the number of errors printed.
 
 ```c
-#define BULKI_MAIN
 #include "bulki.h"
 
 test_t bulki_test, other_test;
 
-int main()
-{
-	check(bulki_test, other_test);
+int main() {
+	bulki_test();
+	other_test();
 
-	return errors();
+	return errors;
 }
+
 ```
 
 In other files just create `() -> void` functions with the same names.
@@ -25,14 +25,12 @@ In other files just create `() -> void` functions with the same names.
 ```c
 #include "bulki.h"
 
-void bulki_test()
-{
+void bulki_test() {
 	assert('a' != 'b');
 	assert(4 < 5);
 }
 
-void other_test()
-{
+void other_test() {
 	assert(1 != 2);
 	assert(1u == 1);
 }
@@ -42,7 +40,7 @@ void other_test()
 
 > It is recommended to test before installation
 
-```shell
+```sh
 make test
 make install
 ```

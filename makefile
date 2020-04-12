@@ -3,4 +3,4 @@ test: test.c test2.c bulki.h
 	./test
 
 install: bulki.h
-	cp bulki.h /usr/local/include
+	install bulki.h /usr/local/include
